@@ -1,0 +1,31 @@
+.navbar {
+    background-color: rgb(38, 38, 38);
+    min-width: 360px;
+}
+
+.logo-sales-app {
+    color: rgb(71, 245, 32);
+    font-size: 35px;
+    font-weight: 500;
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+.logo-sales-app:hover {
+    color: rgb(71, 245, 32);
+}
+
+.logo-app {
+    color: rgb(224, 223, 223);
+    font-size: 33px;
+}
+
+.nav-item {
+    background-color: transparent;
+}
+
+.navbar-item-link {
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-left: 40px;
+}
