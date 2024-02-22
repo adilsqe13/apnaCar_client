@@ -10,7 +10,7 @@ export default function Register() {
   const [userCredentials, setuserCredentials] = useState({ fullName: '', email: '', password: '', mobile: '', address: '', state: '', postalCode: '' });
   const [processing, setProcessing] = useState(false);
   const navigate = useNavigate();
-  const handleRegister = async (e) => {
+  const handleRegister = async (e) => { 
     e.preventDefault();
     setProcessing(true);
     const response = await fetch(`${apiUrl}/api/auth/user/register`, {
@@ -39,8 +39,8 @@ export default function Register() {
         window.scrollTo(0, 0);
         showToast('Registered Succesfully', 'success');
       } else {
-        navigate('/register');
-        const errorMsg = await json.errors[0].msg || json.error;
+        navigate('/customer-signup');
+        const errorMsg = await json.error;
         showToast(errorMsg, 'warn');
       }
     } catch (error) {
@@ -84,7 +84,14 @@ export default function Register() {
               <input type='text' onChange={onChange} value={userCredentials.state} name='state' className='form-control input-field fs-6' placeholder='eg. West Bengal' />
               <label className=' fs-4 mt-0' >Postal Code</label>
               <input type='text' onChange={onChange} value={userCredentials.postalCode} name='postalCode' className='form-control input-field fs-6' placeholder='eg. 713302' />
-              <button onClick={handleRegister} className='btn btn-dark form-control mt-4 fs-4 bold  '>
+              <button disabled={userCredentials.fullName === '' ||
+                                userCredentials.email === '' ||
+                                userCredentials.password === '' ||
+                                userCredentials.mobile === '' ||
+                                userCredentials.address === '' ||
+                                userCredentials.city === '' ||
+                                userCredentials.state === '' ||
+                                userCredentials.postalCode === ''} onClick={handleRegister} className='btn btn-dark form-control mt-4 fs-4 bold  '>
                 {processing === true ? <Spinner height='30' width='30' /> : 'Sign Up'}
               </button>
             </form>

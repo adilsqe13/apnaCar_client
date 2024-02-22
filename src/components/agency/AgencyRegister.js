@@ -37,12 +37,13 @@ export default function SellerRegister() {
         window.scrollTo(0, 0);
         showToast('Registered Succesfully', 'success');
       } else {
-        navigate('/agency-register');
-        const errorMsg = await json.errors[0].msg || json.error
+        const errorMsg = await json.error
         showToast(errorMsg, 'warn');
+        navigate('/agency-register');
       }
     } catch (error) {
       console.log(error);
+      showToast('Something went wrong', 'warn');
     }
   }
 
@@ -77,7 +78,12 @@ export default function SellerRegister() {
               <input type='text' onChange={onChange} value={sellerCredentials.companyName} name='companyName' className='form-control input-field fs-6' placeholder='eg. Bengal Traders' />
               <label className=' fs-4 mt-0' >Agency Address</label>
               <input type='text' onChange={onChange} value={sellerCredentials.companyAddress} name='companyAddress' className='form-control input-field fs-6' placeholder='Enter Address' />
-              <button onClick={handleRegister} className='btn btn-dark form-control mt-4 fs-4 bold  '>
+              <button disabled={sellerCredentials.fullName === '' ||
+                                sellerCredentials.email === '' ||
+                                sellerCredentials.password === '' ||
+                                sellerCredentials.mobile === '' ||
+                                sellerCredentials.companyName === '' ||
+                                sellerCredentials.companyAddress === ''} onClick={handleRegister} className='btn btn-dark form-control mt-4 fs-4 bold  '>
                 {processing === true ? <Spinner height='30' width='30' /> : 'Register'}
               </button>
             </form>
